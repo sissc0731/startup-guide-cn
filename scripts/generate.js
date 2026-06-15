@@ -1,14 +1,33 @@
 const fs=require('fs'),path=require('path'),today=new Date().toISOString().slice(0,10),slug=today;
-const feed=JSON.parse(fs.readFileSync(path.join(__dirname,'..','feed.json'),'utf8'));
-if(feed.posts.find(p=>p.slug===slug)){console.log('Exists');process.exit(0)}
-const articles=[
-{title:'普通人怎么从0开始创业？不需要很多钱，先跑通最小闭环',tag:'创业入门',intro:'创业不是一定要融资、租办公室、招团队。对普通人来说，最好的创业方式是——先用最低成本验证一件事能不能赚钱。赚到第一块钱，比写一百页商业计划书重要。',sections:[{title:'💡 找对你的"小生意"',body:'不是所有人都适合开奶茶店。选项目三个标准：你做起来不痛苦甚至有点享受的事、别人愿意为这个结果付钱、市场上已经有人在做了说明有需求。不要追求\"独一无二的创意\"——找到一个已经存在的需求，把它做得更好一点、更便宜一点、服务更好一点。第一次创业最怕创新——你连基本的商业逻辑都没跑通，创新只会让你死得更快。'},{title:'💰 从"赚到第一块钱"开始',body:'在你租办公室和注册公司之前，先试着靠你想做的事赚到第一笔钱。想卖手工面包？先在朋友圈试卖。想做设计接单？先在闲鱼挂个链接。想开培训班？先一对一给邻居家的孩子上课试试。第一块钱验证了：有人愿意为你的产品/服务付钱。这个信号比任何市场调研报告都准确。赚到100块钱比写100页计划书强100倍。'},{title:'📈 从100到10000的复制',body:'当你靠个人能力赚到第一笔钱后，下一步不是扩大规模——是把你的方法总结成可复制的流程。你每天做的事写成清单、和客户沟通的话术写成模板、定价和收款方式固定下来。当这个流程稳定到别人照着做也能拿到类似结果时，你就从\"手艺人\"变成了\"创业者\"。这时候再考虑招人、开店、投广告。'}]},
-{title:'摆摊卖什么最赚钱？2026年地摊经济实操指南',tag:'地摊创业',intro:'地摊不是low，是低成本的商业试验场。很多品牌创始人的第一步就是从摆摊开始的——因为在摊位上你能最直接地观察顾客的反应、测试产品定价、练习销售技巧。',sections:[{title:'🔥 2026年地摊热门品类',body:'小吃类永远是销冠：淀粉肠（低成本高毛利）、手打柠檬茶（颜值高适合拍照打卡）、烤串（经典不过时）、糖水（夏天爆款）。非食品类：手机贴膜（技术门槛低毛利高）、创意饰品（女生爱买复购率高）、宠物零食（铲屎官的钱最好赚）。选品的核心：高毛利、低门槛、客单价50以内、不需要复杂设备。'},{title:'📍 选址和出摊时间',body:'大学城周边、地铁口、夜市一条街是黄金位置。周末比工作日好卖、晚上比白天好卖。出摊前先去踩点两天：观察人流、看看同行生意、问问摊位费和管理规则。不要跟老摊主抢位置——他们有固定客户你是新人。找新开的夜市或者人流大但同行少的地方。下午4点出摊晚上10点收摊是最佳时间窗口。'},{title:'💡 摆摊路上的坑',body:'最大的坑是\"我以为很好卖\"——凭感觉进货而不是先试卖。正确做法：先少拿货试两天，卖得好再补。第二个坑是不算账——感觉生意不错月底发现亏了。每一样东西算清楚成本，调料纸巾打包盒都要算进去。第三个坑是和城管/管理方关系没搞好——该交的管理费主动交、卫生收拾干净、和周围摊主搞好关系。地摊也是生意，专业和认真一样都不能少。'}]},
-{title:'不辞职也能创业：上班族的副业创业指南',tag:'副业创业',intro:'全职创业是高风险行为。最稳妥的路径是：保留主业的稳定收入，用业余时间把副业跑通、跑稳、跑到可以替代主业的收入水平，再考虑辞职。这个过程可能6个月也可能2年，没有固定时间表。',sections:[{title:'⏰ 时间从哪来',body:'不是你忙到没时间，是这件事的优先级不够高。每天早起1小时、中午休息30分钟、晚上孩子睡了以后1-2小时——一天挤出2-3小时完全可行。周末两天各投入4-5小时。一周下来就是20小时左右，相当于一份兼职的工作量。关键不是时间管理，是精力管理——在精力最好的时间段做副业，而不是在累了一天之后。'},{title:'🎯 选什么副业方向',body:'主业和副业有交集是最好的：设计师接私单、程序员做外包、英语好的做翻译、会计帮做账。这些副业直接利用主业积累的技能和客户资源。另一个方向是培育未来主业：主业做运营但想转产品经理——业余自己设计一款小产品。主业和副业不冲突、副业还能反哺主业——这是最理想的状态。'},{title:'⚖️ 副业和主业的法律边界',body:'确认劳动合同里有没有竞业限制条款。不要在上班时间做副业（会被开除）。不要用公司的电脑、软件、客户资源做自己的副业（这是侵占公司资产）。不要在社交媒体上公开说\"我在XX公司上班的同时在做YY副业\"——低调是美德。把主业和副业完全分开，物理上和社交上都分开。'}]},
-{title:'创业第一年最容易犯的5个错误，提前看完省几万学费',tag:'避坑指南',intro:'90%的创业公司死在第一年。不是死在没有市场，是死在创业者自己的认知盲区。这些错误几乎每个第一次创业的人都会犯——提前知道可以少交很多冤枉学费。',sections:[{title:'💸 错误1：花太多钱在"看起来像做生意"',body:'租办公室、印名片、做官网、注册一堆商标——这些都不是赚钱。赚钱只有一件事：找到客户+成交。在第一个客户成交之前，你的办公地点是家里、你的名片是微信、你的官网是朋友圈。省下来的每一分钱都能让你多活一个月。时间是创业者最宝贵的资源，钱是帮你买时间的——不要把钱花在买面子上。'},{title:'🤝 错误2：和朋友合伙没签协议',body:'多少年的朋友因为合伙做生意反目成仇。不管关系多好，合伙之前必须书面约定：各自出多少钱占多少股、谁说了算（必须有一个人说了算不能事事表决）、退出机制怎么约定、散伙怎么分。约定得越清楚感情维持得越久。所谓\"人情\"在利益面前不堪一击。协议不是不信任，是保护好这段关系。'},{title:'📊 错误3：不看现金流只看收入',body:'账面一个月流水5万，以为赚了5万。扣掉进货款3万、物流5000、平台佣金3000、房租水电员工工资——到手可能就5000甚至亏的。流水是虚荣，利润才是实力，现金流是命。命没了什么都没了。每周看一次银行余额，比每月看一次利润表重要。'}]},
+const fp=path.join(__dirname,'..','feed.json');
+const feed=JSON.parse(fs.readFileSync(fp,'utf8'));
+if(!feed.posts)feed.posts=[];
+if(feed.posts.find(p=>p.slug===slug)){console.log('Already exists');process.exit(0)}
+
+// Content pools - 8 groups cycling through dates
+const pools=[
+[{t:'效率翻倍！这3个小技巧让你的工作流更顺畅',tag:'效率技巧',d:'减少切换、批处理、自动化——3个简单技巧立刻提升效率'}],
+[{t:'2026年必备的免费工具推荐',tag:'工具推荐',d:'精心挑选的实用免费工具，日常办公和创作都能用上'}],
+[{t:'为什么你总觉得时间不够用？',tag:'时间管理',d:'不是你不够努力，而是方法需要调整。重新规划你的时间分配'}],
+[{t:'工作学习两不误的小窍门',tag:'学习方法',d:'高效人士都在用的学习方法，每天只需投入少量时间'}],
+[{t:'比勤奋更重要的是方法',tag:'思维方式',d:'换个角度思考问题，可能会发现之前困扰你的事其实很简单'}],
+[{t:'减少决策疲劳的日常习惯',tag:'习惯养成',d:'每天做太多小决定会消耗精力，建立习惯让大脑自动运行'}],
+[{t:'让生活更有条理的整理术',tag:'生活技巧',d:'整理不只是打扫房间，更是整理思绪和提升幸福感的方式'}],
+[{t:'数字时代如何保持专注',tag:'专注力',d:'手机和社交媒体在偷走你的注意力，教你几招夺回主动权'}],
 ];
-const idx=(new Date().getDate()-1)%articles.length,a=articles[idx];
-feed.posts.unshift({slug,date:today,title:a.title,tag:a.tag,intro:a.intro,sections:a.sections});
-feed.updated=today;fs.writeFileSync(path.join(__dirname,'..','feed.json'),JSON.stringify(feed,null,2));
-const html=`<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>${a.title} - 创业指南</title><style>*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}:root{--bg:#fafafa;--card:#fff;--text:#1a1a2e;--t2:#555;--accent:#d97706;--border:#e5e7eb;--r:12px}body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans SC",sans-serif;background:var(--bg);color:var(--text);line-height:1.9;font-size:16px}.container{max-width:750px;margin:0 auto;padding:0 20px}header{background:linear-gradient(135deg,#d97706,#f59e0b);color:#fff;padding:36px 0;margin-bottom:24px}header a{color:rgba(255,255,255,.85);text-decoration:none;font-size:.9rem}header h1{font-size:1.5rem;margin-top:8px;line-height:1.4}.post{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:32px}.post .intro{font-size:1rem;color:var(--t2);margin-bottom:28px;padding-bottom:20px;border-bottom:1px solid var(--border);line-height:1.8}.section{margin-bottom:24px}.section h3{font-size:1.05rem;margin-bottom:6px;color:var(--accent)}.section p{color:var(--t2);font-size:.92rem;line-height:1.9}footer{text-align:center;padding:24px;color:#999;font-size:.75rem}@media(max-width:600px){.post{padding:18px}}</style></head><body><header><div class="container"><a href="../index.html">← 首页</a><h1>${a.title}</h1></div></header><main class="container"><article class="post"><p class="intro">${a.intro}</p>${a.sections.map(s=>`<div class="section"><h3>${s.title}</h3><p>${s.body}</p></div>`).join('')}</article></main><footer><p>🚀 创业指南 · 每日更新</p></footer></body></html>`;
-fs.writeFileSync(path.join(__dirname,'..','posts',slug+'.html'),html);console.log('OK');
+
+const idx=(new Date().getDate()-1)%pools.length;
+const pool=pools[idx];
+const titles=['每日分享 | '+today,'实用技巧 | '+today,'效率提升 | '+today,'好物推荐 | '+today];
+const title=titles[new Date().getDate()%titles.length];
+
+feed.posts.unshift({slug,date:today,title:title,items:pool});
+feed.updated=today;
+fs.writeFileSync(fp,JSON.stringify(feed,null,2));
+
+// Create post HTML
+const dir=path.join(__dirname,'..','posts');
+if(!fs.existsSync(dir))fs.mkdirSync(dir,{recursive:true});
+const h=`<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>${title}</title><meta name="description" content="${pool.map(i=>i.t).join('、')}"><style>body{font:16px -apple-system,sans-serif;background:#fafafa;color:#1a1a2e;line-height:1.8;margin:0;padding:16px}.c{max-width:700px;margin:0 auto}article{background:#fff;padding:24px;border-radius:12px;box-shadow:0 1px 3px rgba(0,0,0,.05)}h1{font-size:1.3rem;margin:0 0 4px}.date{font-size:.8rem;color:#666;margin-bottom:20px}.item{margin-bottom:18px;padding-bottom:14px;border-bottom:1px solid #eee}.item h2{font-size:1rem;margin:0 0 4px}.item p{font-size:.88rem;color:#555}.tag{display:inline-block;background:#eff6ff;color:#2563eb;font-size:.68rem;padding:2px 8px;border-radius:10px;margin-left:6px}footer{text-align:center;padding:20px;color:#999;font-size:.72rem}</style></head><body><div class="c"><article><h1>${title}</h1><p class="date">📅 ${today}</p>${pool.map(i=>'<div class="item"><h2>'+i.t+' <span class="tag">'+i.tag+'</span></h2><p>'+i.d+'</p></div>').join('')}</article></div><footer>每日自动更新</footer></body></html>`;
+fs.writeFileSync(path.join(dir,slug+'.html'),h);
+console.log('Generated:',title);
